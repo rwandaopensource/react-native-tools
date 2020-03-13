@@ -5,12 +5,13 @@
   "description": "TODO",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --collect-coverage",
+    "lint": "eslint lib/* --fix --max-warnings=0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/react-native-tools.git",
-    "baseUrl": "https://github.com/github_account/react-native-tools"
+    "url": "git+https://github.com/rwandaopensource/react-native-tools.git",
+    "baseUrl": "https://github.com/rwandaopensource/react-native-tools"
   },
   "keywords": [
     "react-native"
@@ -27,7 +28,35 @@
     "react-native": ">=0.60.0-rc.0 <1.0.x"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-cypress": "^2.10.3",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-native": "^3.8.1",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "lint-staged": "^10.0.8",
+    "metro-react-native-babel-preset": "^0.58.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "react": "^16.9.0",
     "react-native": "^0.61.5"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "pretty-quick --staged",
+      "eslint lib/ --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
+    }
   }
 }
